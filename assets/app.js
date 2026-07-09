@@ -84,6 +84,9 @@ if (leadForm) {
     ].filter(Boolean);
     conversionEvent('lead_form_whatsapp', true);
     window.open(whatsappUrl(parts.join('\n')), '_blank', 'noopener');
+    setTimeout(function () {
+      window.location.href = 'obrigado.html';
+    }, 650);
   });
 }
 var supportForm = document.getElementById('supportForm');
