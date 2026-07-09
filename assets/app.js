@@ -74,14 +74,23 @@ if (leadForm) {
     e.preventDefault();
     var get = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
     var parts = [
-      'Olá, Minas Sat. Quero uma cotação.',
-      'Nome: ' + get('leadName'),
-      get('leadPhone') ? 'Telefone: ' + get('leadPhone') : '',
-      get('leadCity') ? 'Cidade/UF: ' + get('leadCity') : '',
-      get('leadType') ? 'Interesse: ' + get('leadType') : '',
-      get('leadQty') ? 'Quantidade de veículos: ' + get('leadQty') : '',
-      get('leadMsg') ? 'Mensagem: ' + get('leadMsg') : ''
-    ].filter(Boolean);
+      '*Solicitação de cotação - Minas Sat*',
+      '',
+      '*Dados do contato*',
+      get('leadName') ? '• Nome: ' + get('leadName') : '',
+      get('leadPhone') ? '• WhatsApp: ' + get('leadPhone') : '',
+      get('leadCity') ? '• Cidade/UF: ' + get('leadCity') : '',
+      '',
+      '*Interesse*',
+      get('leadType') ? '• Serviço: ' + get('leadType') : '',
+      get('leadQty') ? '• Quantidade de veículos: ' + get('leadQty') : '',
+      get('leadMsg') ? '• Observação: ' + get('leadMsg') : '',
+      '',
+      'Aguardo o retorno da equipe.'
+    ].filter(function (line, index, arr) {
+      if (line !== '') return true;
+      return arr[index - 1] && arr[index + 1];
+    });
     conversionEvent('lead_form_whatsapp', true);
     window.open(whatsappUrl(parts.join('\n')), '_blank', 'noopener');
     setTimeout(function () {
