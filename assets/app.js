@@ -43,7 +43,7 @@ function setActiveNav(key) {
   var page = (document.body && document.body.getAttribute('data-page')) || '';
   setActiveNav(page || 'home');
   if (page === 'home' && 'IntersectionObserver' in window) {
-    var sectionKeys = ['servicos','produtos','atendimento','faq','contato'];
+    var sectionKeys = ['servicos','produtos','atendimento','faq'];
     var sections = sectionKeys.map(function(id){return document.getElementById(id);}).filter(Boolean);
     var observer = new IntersectionObserver(function(entries){
       var visible = entries.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;})[0];
