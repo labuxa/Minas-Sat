@@ -43,21 +43,26 @@
     <div>
       <span class="eyebrow"><span class="dot"></span> Área do Cliente</span>
       <h1>Acesse sua plataforma de rastreamento.</h1>
-      <p class="lead">Use o botão abaixo para entrar no ambiente Getrak da Minas Sat. O login e a senha são informados diretamente na plataforma oficial.</p>
+      <p class="lead">Informe seu login e senha no campo ao lado para entrar diretamente na plataforma Getrak da Minas Sat. O site apenas envia os dados para a plataforma oficial e não armazena sua senha.</p>
       <div class="cta-row">
-        <a class="btn btn-red" href="https://v2.getrak.com.br/minassat/login" target="_blank" rel="noopener" data-event="area_cliente_login" data-conversion="false">Entrar na plataforma</a>
         <a class="btn btn-white" href="index.html">Voltar ao site</a>
         <a class="btn btn-whatsapp" data-event="whatsapp_suporte_login" data-conversion="false" data-whatsapp="Olá, sou cliente Minas Sat e preciso de ajuda para acessar minha plataforma." href="#">Preciso de ajuda</a>
       </div>
     </div>
     <div class="contact-form">
-      <h2 style="color:#111;margin-bottom:10px">Suporte de acesso</h2>
-      <p class="muted">Se não conseguir acessar, envie uma solicitação pelo WhatsApp para a equipe da Minas Sat.</p>
+      <h2 style="color:#111;margin-bottom:10px">Entrar na plataforma</h2>
+      <p class="muted">Use as credenciais fornecidas pela Minas Sat.</p>
+      <form class="form" action="https://v2.getrak.com.br/minassat/login" method="post" autocomplete="on" style="margin-top:18px" data-event="area_cliente_login" data-conversion="false">
+        <input type="text" name="login" placeholder="Login" required autocomplete="username">
+        <input type="password" name="senha" placeholder="Senha" required autocomplete="current-password">
+        <button class="btn btn-red" type="submit" name="ok" value="Entrar">Entrar na plataforma</button>
+      </form>
+      <p class="muted" style="font-size:.9rem;margin-top:14px">Por segurança, este site não armazena senha nem dados de acesso. O envio é feito para a plataforma oficial da Getrak.</p>
       <form class="form" id="supportForm" style="margin-top:18px">
         <input id="supportName" type="text" placeholder="Nome para suporte">
         <button class="btn btn-whatsapp" type="submit">Esqueci minha senha / preciso de ajuda</button>
       </form>
-      <p class="muted" style="font-size:.9rem;margin-top:14px">Por segurança, este site não armazena senha nem dados de acesso.</p>
+      <p class="muted" style="font-size:.85rem;margin-top:12px">Caso o acesso integrado não funcione no navegador, use o suporte pelo WhatsApp para validação das credenciais.</p>
     </div>
   </div>
 </section>
