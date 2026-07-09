@@ -36,8 +36,7 @@ function setActiveNav(key) {
   document.querySelectorAll('.nav a[data-nav]').forEach(function (a) {
     var active = a.getAttribute('data-nav') === key;
     a.classList.toggle('active', active);
-    if (active) a.setAttribute('aria-current', 'page');
-    else a.removeAttribute('aria-current');
+    if (active) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
 }
 (function initActiveNav(){
@@ -48,8 +47,7 @@ function setActiveNav(key) {
     var sections = sectionKeys.map(function(id){return document.getElementById(id);}).filter(Boolean);
     var observer = new IntersectionObserver(function(entries){
       var visible = entries.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;})[0];
-      if (visible) setActiveNav(visible.target.id);
-      else if (window.scrollY < 250) setActiveNav('home');
+      if (visible) setActiveNav(visible.target.id); else if (window.scrollY < 250) setActiveNav('home');
     }, {rootMargin:'-28% 0px -58% 0px', threshold:[0.08,0.18,0.32]});
     sections.forEach(function(s){ observer.observe(s); });
   }
@@ -81,7 +79,7 @@ if (leadForm) {
       get('leadPhone') ? 'Telefone: ' + get('leadPhone') : '',
       get('leadCity') ? 'Cidade/UF: ' + get('leadCity') : '',
       get('leadType') ? 'Interesse: ' + get('leadType') : '',
-      get('leadQty') ? 'Quantidade de veículos/máquinas: ' + get('leadQty') : '',
+      get('leadQty') ? 'Quantidade de veículos: ' + get('leadQty') : '',
       get('leadMsg') ? 'Mensagem: ' + get('leadMsg') : ''
     ].filter(Boolean);
     conversionEvent('lead_form_whatsapp', true);
