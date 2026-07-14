@@ -1,7 +1,7 @@
 
 window.MINAS_SAT = window.MINAS_SAT || {
-  googleAdsId: 'AW-SEU_ID_AQUI',
-  conversionLabel: 'SEU_LABEL_AQUI',
+  googleAdsId: 'AW-18248540961',
+  conversionLabel: 'zyFWCO_MlMYcEKHGyv1D',
   whatsapp: '5531973022828'
 };
 function storageGet(key) {
