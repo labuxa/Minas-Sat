@@ -4,9 +4,17 @@ window.MINAS_SAT = window.MINAS_SAT || {
   conversionLabel: 'SEU_LABEL_AQUI',
   whatsapp: '5531973022828'
 };
-(function () {
-  var id = String(window.MINAS_SAT.googleAdsId || '').trim();
+function storageGet(key) {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function storageSet(key, value) {
+  try { localStorage.setItem(key, value); } catch (e) {}
+}
+function loadGoogleTag() {
+  if (window.minasSatGoogleTagLoaded) return;
+  var id = String((window.MINAS_SAT && window.MINAS_SAT.googleAdsId) || '').trim();
   if (!/^AW-[0-9]+$/.test(id)) return;
+  window.minasSatGoogleTagLoaded = true;
   var tag = document.createElement('script');
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
@@ -15,6 +23,14 @@ window.MINAS_SAT = window.MINAS_SAT || {
   window.gtag = function () { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
   window.gtag('config', id);
+}
+(function initCookiePreference() {
+  var choice = storageGet('minasSatCookieChoice');
+  if (!choice && storageGet('minasSatCookiesOk')) {
+    choice = 'all';
+    storageSet('minasSatCookieChoice', choice);
+  }
+  if (choice === 'all') loadGoogleTag();
 })();
 function conversionEvent(name, shouldConvert) {
   var cfg = window.MINAS_SAT || {};
@@ -112,10 +128,18 @@ var year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 var cookies = document.getElementById('cookies');
 var accept = document.getElementById('acceptCookies');
-if (cookies && accept) {
-  if (!localStorage.getItem('minasSatCookiesOk')) cookies.classList.add('show');
+var essential = document.getElementById('essentialCookies');
+if (cookies && accept && essential) {
+  var choice = storageGet('minasSatCookieChoice');
+  if (!choice) cookies.classList.add('show');
   accept.addEventListener('click', function () {
-    localStorage.setItem('minasSatCookiesOk', '1');
+    storageSet('minasSatCookieChoice', 'all');
+    storageSet('minasSatCookiesOk', '1');
+    loadGoogleTag();
+    cookies.classList.remove('show');
+  });
+  essential.addEventListener('click', function () {
+    storageSet('minasSatCookieChoice', 'essential');
     cookies.classList.remove('show');
   });
 }
