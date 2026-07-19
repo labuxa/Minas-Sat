@@ -110,7 +110,7 @@ if (leadForm) {
     conversionEvent('lead_form_whatsapp', true);
     window.open(whatsappUrl(parts.join('\n')), '_blank', 'noopener');
     setTimeout(function () {
-      window.location.href = 'obrigado.html';
+      window.location.href = '/obrigado.html';
     }, 650);
   });
 }
